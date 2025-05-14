@@ -8,6 +8,9 @@ using Uno.Extensions.Http.Kiota;
 
 namespace Chefs;
 
+/// <summary>
+/// it all starts here
+/// </summary>
 public partial class App : Application
 {
 	private void ConfigureAppBuilder(IApplicationBuilder builder)
