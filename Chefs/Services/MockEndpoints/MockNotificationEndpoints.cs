@@ -1,6 +1,3 @@
-
-using Chefs.Services.MockEndpoints;
-
 namespace Chefs.Services;
 
 public class MockNotificationEndpoints(string basePath, ISerializer serializer) : BaseMockEndpoint(serializer)
@@ -11,7 +8,7 @@ public class MockNotificationEndpoints(string basePath, ISerializer serializer) 
 							?? [];
 
 		//Get all notifications
-		if (request.RequestUri.AbsolutePath == "/api/notification" && request.Method == HttpMethod.Get)
+		if (request.RequestUri.AbsolutePath == "/api/Notification" && request.Method == HttpMethod.Get)
 		{
 			return serializer.ToString(notifications);
 		}
