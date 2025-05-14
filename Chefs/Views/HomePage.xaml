@@ -6,6 +6,7 @@
 	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:uer="using:Uno.Extensions.Reactive.UI"
 	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:ctrl="using:Chefs.Views.Controls"
 	  xmlns:uen="using:Uno.Extensions.Navigation.UI"
 	  xmlns:ut="using:Uno.Themes"
 	  mc:Ignorable="d"
@@ -24,10 +25,13 @@
 								PrimaryAxisAlignment="Center"
 								HorizontalAlignment="Stretch">
 					<Border Height="144">
-						<Image HorizontalAlignment="Center"
-							   VerticalAlignment="Center"
-							   Source="{Binding ImageUrl}"
-							   Stretch="UniformToFill" />
+						<ctrl:OverviewControl DataContext="{Binding}"
+										   CarbBrush="{ThemeResource NutritionCarbsValBrush}"
+										   ProteinBrush="{ThemeResource NutritionProteinValBrush}"
+										   FatBrush="{ThemeResource NutritionFatValBrush}"
+										   DataLabelBrush="{ThemeResource NutritionDataLabelBrush}"
+										   TrackBackgroundBrush="{ThemeResource NutritionTrackBackgroundBrush}"
+										   />
 					</Border>
 					<utu:AutoLayout Spacing="16"
 									Padding="16"

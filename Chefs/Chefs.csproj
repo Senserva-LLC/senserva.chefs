@@ -257,4 +257,10 @@
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
 		</PropertyGroup>
 	</Target>
+
+	<ItemGroup>
+	  <Page Update="Views\Controls\OverviewControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
 </Project>
