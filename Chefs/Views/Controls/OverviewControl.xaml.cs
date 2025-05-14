@@ -16,26 +16,24 @@ public sealed partial class OverviewControl : UserControl
 
 	public SolidColorBrush CarbBrush
 	{
-		get => (SolidColorBrush)GetValue(CarbBrushProperty);
-		set { SetValue(CarbBrushProperty, value); }
+		get => (SolidColorBrush)GetValue(CarbBrushProperty); set => SetValue(CarbBrushProperty, value);
 	}
 
 	public static readonly DependencyProperty CarbBrushProperty =
 		DependencyProperty.Register("CarbBrush", typeof(SolidColorBrush), typeof(OverviewControl), new PropertyMetadata(new SolidColorBrush(Colors.Black), OnBrushChanged));
 
 	public SolidColorBrush ProteinBrush
-	{
-		get { return (SolidColorBrush)GetValue(ProteinBrushProperty); }
-		set { SetValue(ProteinBrushProperty, value); }
+	{  get => (SolidColorBrush)GetValue(ProteinBrushProperty);
+		set => SetValue(ProteinBrushProperty, value);
 	}
 
 	public static readonly DependencyProperty ProteinBrushProperty =
 		DependencyProperty.Register("ProteinBrush", typeof(SolidColorBrush), typeof(OverviewControl), new PropertyMetadata(new SolidColorBrush(Colors.Black), OnBrushChanged));
 
 	public SolidColorBrush FatBrush
-	{
-		get { return (SolidColorBrush)GetValue(FatBrushProperty); }
-		set { SetValue(FatBrushProperty, value); }
+	{ get => (SolidColorBrush)GetValue(FatBrushProperty);
+
+		set => SetValue(FatBrushProperty, value);
 	}
 
 	public static readonly DependencyProperty FatBrushProperty =
