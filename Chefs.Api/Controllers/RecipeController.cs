@@ -1,5 +1,3 @@
-
-
 namespace Chefs.Api.Controllers;
 
 /// <summary>
@@ -7,11 +5,11 @@ namespace Chefs.Api.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class RecipeController : ControllerBase
+public class RecipeController() : ChefsControllerBase
 {
-	private readonly string _recipesFilePath = "Data/AppData/Recipes.json";
-	private readonly string _savedRecipesFilePath = "Data/AppData/SavedRecipes.json";
-	private readonly string _categoriesFilePath = "Data/AppData/Categories.json";
+	private readonly string _recipesFilePath = "Recipes.json";
+	private readonly string _savedRecipesFilePath = "SavedRecipes.json";
+	private readonly string _categoriesFilePath = "categories.json";
 
 	/// <summary>
 	/// Retrieves all recipes.
@@ -80,12 +78,11 @@ public class RecipeController : ControllerBase
 	[HttpGet("favorited")]
 	public IActionResult GetFavorited([FromQuery] Guid userId)
 	{
-		var savedRecipes = LoadData<List<SavedRecipesData>>(_savedRecipesFilePath);
-		var userSavedRecipes = savedRecipes.FirstOrDefault(sr => sr.UserId == userId)?.SavedRecipes ?? Array.Empty<Guid>();
+		var savedRecipes = LoadData<List<Guid>>(_savedRecipesFilePath);
 
 		var recipes = LoadData<List<RecipeData>>(_recipesFilePath);
 		var favorited = recipes
-			.Where(r => userSavedRecipes.Contains(r.Id))
+			.Where(r => savedRecipes.Contains(r.Id))
 			.Select(r =>
 			{
 				r.IsFavorite = true;
@@ -103,29 +100,9 @@ public class RecipeController : ControllerBase
 	/// <param name="userId">The user ID.</param>
 	/// <returns>No content.</returns>
 	[HttpPost("favorited")]
-	public IActionResult ToggleFavorite([FromQuery] Guid recipeId, [FromQuery] Guid userId)
-	{
-		var savedRecipes = LoadData<List<SavedRecipesData>>(_savedRecipesFilePath);
-		var userSavedRecipe = savedRecipes.FirstOrDefault(sr => sr.UserId == userId);
-
-		if (userSavedRecipe != null)
-		{
-			if (userSavedRecipe.SavedRecipes.Contains(recipeId))
-			{
-				userSavedRecipe.SavedRecipes = userSavedRecipe.SavedRecipes.Where(id => id != recipeId).ToArray();
-			}
-			else
-			{
-				userSavedRecipe.SavedRecipes = userSavedRecipe.SavedRecipes.Concat(new[] { recipeId }).ToArray();
-			}
-		}
-		else
-		{
-			savedRecipes.Add(new SavedRecipesData { UserId = userId, SavedRecipes = new[] { recipeId } });
-		}
-
-		return NoContent();
-	}
+	public IActionResult ToggleFavorite([FromQuery] Guid recipeId, [FromQuery] Guid userId) =>
+		// We do not persist the favorite state in this example.
+		NoContent();
 
 	/// <summary>
 	/// Saves or unsaves a recipe for a specific user.
@@ -134,29 +111,9 @@ public class RecipeController : ControllerBase
 	/// <param name="userId">The user ID.</param>
 	/// <returns>No content.</returns>
 	[HttpPost]
-	public IActionResult Save([FromBody] RecipeData recipe, [FromQuery] Guid userId)
-	{
-		var savedRecipes = LoadData<List<SavedRecipesData>>(_savedRecipesFilePath);
-		var userSavedRecipe = savedRecipes.FirstOrDefault(sr => sr.UserId == userId);
-
-		if (userSavedRecipe != null)
-		{
-			if (userSavedRecipe.SavedRecipes.Contains(recipe.Id))
-			{
-				userSavedRecipe.SavedRecipes = userSavedRecipe.SavedRecipes.Where(id => id != recipe.Id).ToArray();
-			}
-			else
-			{
-				userSavedRecipe.SavedRecipes = userSavedRecipe.SavedRecipes.Concat(new[] { recipe.Id }).ToArray();
-			}
-		}
-		else
-		{
-			savedRecipes.Add(new SavedRecipesData { UserId = userId, SavedRecipes = new[] { recipe.Id } });
-		}
-
-		return NoContent();
-	}
+	public IActionResult Save([FromBody] RecipeData recipe, [FromQuery] Guid userId) =>
+		// We do not persist the favorite state in this example.
+		NoContent();
 
 	/// <summary>
 	/// Creates a review for a recipe.
@@ -333,17 +290,5 @@ public class RecipeController : ControllerBase
 		{
 			return NotFound("Recipe not found");
 		}
-	}
-
-	/// <summary>
-	/// Loads data from a specified JSON file.
-	/// </summary>
-	/// <typeparam name="T">The type of data to load.</typeparam>
-	/// <param name="filePath">The file path of the JSON file.</param>
-	/// <returns>The loaded data.</returns>
-	private T LoadData<T>(string filePath)
-	{
-		var json = System.IO.File.ReadAllText(filePath);
-		return JsonSerializer.Deserialize<T>(json);
 	}
 }
