@@ -128,16 +128,6 @@
 		<Content Include="Assets\**\*.png" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="..\AppData\*.json" LinkBase="AppData">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="AppData\" />
-	</ItemGroup>
-
 	<Choose>
 		<When Condition="'$(IsCanaryBranch)'=='true'">
 			<ItemGroup>
@@ -263,4 +253,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="..\AppData\*.json" LinkBase="AppData" />
+	</ItemGroup>
+
 </Project>
