@@ -16,11 +16,11 @@
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->
-		<ApplicationTitle>Chefs</ApplicationTitle>
+		<ApplicationTitle>Senerva Chefs</ApplicationTitle>
 
 		<!-- Comment to use native rendering -->
 		<UseSkiaRendering Condition="'$(UseSkiaRendering)'==''">true</UseSkiaRendering>
-		
+
 		<!-- App Identifier -->
 		<ApplicationId Condition="'$(UseSkiaRendering)' != 'true'">uno.platform.chefs</ApplicationId>
 		<ApplicationId Condition="'$(UseSkiaRendering)' == 'true'">uno.platform.chefs.skia</ApplicationId>
@@ -257,4 +257,10 @@
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
 		</PropertyGroup>
 	</Target>
+
+	<ItemGroup>
+	  <Page Update="Views\Controls\OverviewControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
 </Project>
