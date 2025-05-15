@@ -8,6 +8,10 @@ using Uno.Extensions.Http.Kiota;
 
 namespace Chefs;
 
+// notes https://www.svgrepo.com/
+// https://github.com/unoplatform/Uno.Samples/blob/master/UI/SQLiteSample/src/SQLiteSample/MainPage.xaml.cs
+//https://github.com/unoplatform/Uno.Samples/blob/master/UI/EFCoreSQLiteSample/src/EFCoreSQLiteSample/EFCoreSQLiteSample.csproj
+
 /// <summary>
 /// it all starts here
 /// </summary>
