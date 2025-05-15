@@ -13,6 +13,10 @@
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="NUnit" Version="3.13.3" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageVersion Include="SenservaInquisitor.Core" Version="1.0.0-beta.2025051514" />
+    <PackageVersion Include="SenservaInquisitor.Resources" Version="1.0.0-beta.2025051514" />
+    <PackageVersion Include="SenservaInquisitor.Scanner" Version="1.0.0-beta.2025051514" />
+    <PackageVersion Include="SenservaInquisitor.UIGenerator" Version="1.0.0-beta.2025051514" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="8.1.1" />
     <PackageVersion Include="Xamarin.UITest" Version="4.4.2" />
     <PackageVersion Include="System.Private.Uri" Version="4.3.2" />

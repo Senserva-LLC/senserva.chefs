@@ -12,6 +12,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+		<PackageReference Include="SenservaInquisitor.Core" />
+		<PackageReference Include="SenservaInquisitor.Resources" />
+		<PackageReference Include="SenservaInquisitor.Scanner" />
+		<PackageReference Include="SenservaInquisitor.UIGenerator" />
 		<PackageReference Include="Swashbuckle.AspNetCore" />
 	</ItemGroup>
 
