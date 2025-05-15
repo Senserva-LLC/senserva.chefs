@@ -1,5 +1,8 @@
 using Chefs.Api.Serialization;
 using Microsoft.OpenApi.Models;
+using Senserva.Resources;
+
+var example = Senserva.Resources.AuditGroup.AssignedDirectoryRole;
 
 var builder = WebApplication.CreateBuilder(args);
 
